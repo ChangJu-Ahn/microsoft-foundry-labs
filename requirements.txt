@@ -1,0 +1,30 @@
+# Microsoft Foundry Labs - Python 의존성 (GA 버전 고정)
+# 최종 검증일: 2026-05-28 (PyPI 기준 최신 GA)
+#
+# 노트 사용 시:
+#   %pip install -q -r ../requirements.txt
+# 로컬 환경:
+#   pip install -r requirements.txt
+
+# Foundry / AI Project SDK (v2 GA: Hosted Agents, Workflows, Memory, MCP 지원)
+azure-ai-projects==2.1.0
+
+# Azure 인증 / 관리 SDK
+azure-identity==1.25.3
+azure-mgmt-resource==25.0.0
+azure-mgmt-authorization==4.0.0
+
+# Foundry IQ / Knowledge Base (12.0.0 GA에서 KnowledgeBase API 정식 지원)
+azure-search-documents==12.0.0
+
+# Blob Storage (Knowledge Source - Blob)
+azure-storage-blob==12.29.0
+
+# OpenAI / Azure OpenAI 클라이언트 (Responses API, Conversations API)
+openai==2.38.0
+
+# 평가 (06-evaluations)
+azure-ai-evaluation==1.16.9
+
+# 문서 파싱 (04-foundry-iq: PDF → chunk → embedding)
+pypdf==6.12.2

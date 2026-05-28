@@ -1,5 +1,6 @@
 # Microsoft Foundry Workflow Invocation using Foundry SDK
-# Before running: pip install --pre azure-ai-projects>=2.0.0b1
+# Before running: pip install azure-ai-projects==2.1.0 azure-identity==1.25.3
+# (azure-ai-projects 2.0.0 GA: 2026-03-06, 2.1.0: 2026-04-20)
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import ResponseStreamEventType

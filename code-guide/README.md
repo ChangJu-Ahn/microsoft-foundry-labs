@@ -48,8 +48,8 @@ Python 코드와 Azure CLI를 사용하여 Microsoft Foundry 리소스를 자동
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
-# 필요한 패키지 설치
-pip install azure-identity azure-ai-projects openai requests
+# 필요한 패키지 설치 (리포지토리 루트의 requirements.txt - GA 버전 고정)
+pip install -r requirements.txt
 ```
 
 ### 2️⃣ Azure 로그인
@@ -85,9 +85,10 @@ az account set --subscription "Your-Subscription-Name"
 
 ## 📚 관련 문서
 
-- [Azure AI Foundry SDK for Python](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme)
+- [Azure AI Foundry 문서](https://learn.microsoft.com/azure/ai-foundry/)
+- [Azure AI Foundry SDK for Python (azure-ai-projects)](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme)
 - [Azure CLI Reference](https://learn.microsoft.com/cli/azure/)
-- [Foundry REST API Documentation](https://learn.microsoft.com/rest/api/aiservices/)
+- [Azure AI Search - Knowledge Bases (GA)](https://learn.microsoft.com/azure/search/search-knowledge-base-overview)
 
 ## 💡 다음 단계
 
