@@ -1,4 +1,4 @@
-# Microsoft Foundry Agent Invocation using Activity Protocol
+# Microsoft Foundry Agent Invocation using Responses API protocol
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 

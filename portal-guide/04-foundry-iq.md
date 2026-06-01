@@ -34,12 +34,14 @@ Foundry IQ는 Microsoft Foundry의 지능형 지식 관리 시스템으로, 다�
 ### 주요 특징
 
 ```
-Foundry IQ = Retrieval + Reasoning + Ranking
+Foundry IQ ≒ Retrieval + Reasoning + Ranking
 ```
 
+> 💡 위 표현은 학습 편의를 위한 비유입니다. 공식적으로 Foundry IQ는 *여러 knowledge source(Azure AI Search, Blob, SharePoint, Fabric/OneLake 등)를 통합한 agentic retrieval 기반의 knowledge layer*로 정의되며, 내부적으로 query planning → 병렬 sub-query 검색 → semantic ranking → 결과 합성(citations 포함) 단계를 거칩니다.
+
 - **Retrieval**: 관련 정보를 효율적으로 검색
-- **Reasoning**: 검색된 정보를 이해하고 해석
-- **Ranking**: 가장 관련성 높은 정보를 우선순위화
+- **Reasoning**: LLM 기반 query planning으로 검색된 정보를 이해/재질의
+- **Ranking**: semantic reranker로 관련성 높은 정보를 우선순위화
 
 ### 기존 RAG vs Foundry IQ
 
@@ -55,10 +57,12 @@ Foundry IQ = Retrieval + Reasoning + Ranking
 ### 지원되는 데이터 소스
 
 - **Azure AI Search Index**: 기존 인덱스 재사용
-- **Azure Blob Storage**: 문서 자동 인덱싱
-- **Azure Data Lake Storage Gen2**: 대용량 데이터 처리
-- **SharePoint**: 엔터프라이즈 문서 연동
-- **OneDrive**: 개인 및 비즈니스 문서
+- **Azure Blob Storage**: 문서 자동 인덱싱 (ADLS Gen2 계정 포함)
+- **Microsoft Fabric (OneLake)**: 레이크하우스 데이터 연동
+- **SharePoint Online**: 엔터프라이즈 문서 연동 (사용자 권한/감도 레이블 존중)
+- **웹 콘텐츠**: Grounding with Bing 등 외부 검색 소스
+
+> 💡 OneDrive 콘텐츠는 SharePoint 커넥터를 통해 접근하는 형태이며, 일부 커넥터는 프리뷰/별도 라이선스 요건이 있을 수 있습니다. 최신 지원 목록은 [What is Foundry IQ?](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/what-is-foundry-iq) 문서를 확인하세요.
 
 ---
 
@@ -614,7 +618,9 @@ Blob Storage를 직접 연결하여 자동 인덱싱되는 Knowledge Base를 생
 
 ## 📚 추가 리소스
 
-- [Foundry IQ 개요](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval?view=foundry&tabs=foundry%2Cpython)
+- [Foundry IQ 개요](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/what-is-foundry-iq)
+- [Foundry IQ에 에이전트 연결](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/foundry-iq-connect)
+- [Retrieval reasoning effort 설정](https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-set-retrieval-reasoning-effort)
 - [Azure AI Search 문서](https://learn.microsoft.com/en-us/azure/search/)
 - [RAG 패턴 가이드](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview?tabs=docs)
 - [벡터 검색 최적화](https://learn.microsoft.com/en-us/azure/search/vector-search-overview)

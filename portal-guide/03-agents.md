@@ -129,8 +129,8 @@ Model Router를 활용하여 지능적으로 모델을 선택하는 에이전트
    - 모델 선택 결정 확인
    - 성능 및 비용 분석
 
-   **Tracing 활성화**를 위해서 **App Insigts 생성 및 연결**이 필요합니다.
-   **Agent Tracing**은 Foundry(New)의 **Sweden Central**에서만 가능합니다.
+   **Tracing 활성화**를 위해서 **Application Insights 생성 및 연결**이 필요합니다.
+   **Agent Tracing**은 현재 일부 리전에서 우선 지원되며(예: **Sweden Central**, East US 2 등), 최신 지원 리전은 [Microsoft Foundry feature availability across cloud regions](https://learn.microsoft.com/en-us/azure/foundry/reference/region-support) 문서를 확인하세요.
    
    ![Traces 탭 화면 - Connect](../assets/03-08-agent-traces-connect.png)
 
@@ -391,7 +391,7 @@ az login --tenant <tenant-id>
 `invokeAgent.py` 파일 예시:
 
 ```python
-# Microsoft Foundry Agent Invocation using Activity Protocol
+# Microsoft Foundry Agent Invocation using Responses API protocol
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
@@ -490,10 +490,12 @@ credential = ClientSecretCredential(
 
 ## 📚 추가 리소스
 
-- [Microsoft Foundry Agents 개요](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview?view=foundry)
-- [Agent SDK 문서](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/sdk-overview?view=foundry&pivots=programming-language-python)
-- [File Search 가이드](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/file-search?view=foundry&pivots=python)
-- [Web Search 통합](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/web-search?view=foundry&pivots=python)
+- [Microsoft Foundry Agents 개요](https://learn.microsoft.com/en-us/azure/foundry/agents/overview)
+- [Agent SDK 문서](https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/sdk-overview?pivots=programming-language-python)
+- [File Search 가이드](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/file-search?pivots=python)
+- [Web Search 통합](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/web-search?pivots=python)
+- [Responses API protocol로 Agent 호출](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/publish-responses)
+- [Agent Tracing 설정](https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-agent-setup)
 
 ---
 

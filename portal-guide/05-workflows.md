@@ -37,13 +37,19 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 (단순)                                                    (복잡)
 ```
 
+Microsoft Agent Framework 및 Foundry 워크플로우 빌더에서 공식적으로 지원하는 주요 오케스트레이션 패턴은 다음과 같습니다:
+
 | 타입 | 설명 | 사용 사례 |
 |------|------|-----------|
-| **Sequential** | 순차적 실행 | 데이터 파이프라인, 문서 처리 |
-| **Parallel** | 병렬 실행 | 동시 분석, 다중 검색 |
-| **Group Chat** | 에이전트 간 대화 | 협업 문제 해결, 의사결정 |
-| **Human-in-loop** | 사람 개입 | 승인 프로세스, 검증 |
-| **Conditional** | 조건부 분기 | 동적 라우팅, 에러 처리 |
+| **Sequential** | 정의된 순서대로 에이전트를 순차 실행 | 데이터 파이프라인, 단계별 문서 처리 |
+| **Concurrent** | 여러 에이전트를 병렬 실행 후 결과 집계 | 동시 분석, fan-out/fan-in, 다중 검색 |
+| **Group Chat** | 공유 대화에서 오케스트레이터가 발화자를 선택하며 협업 | 협업 문제 해결, 의사결정, 다관점 분석 |
+| **Handoff** | 컨텍스트/규칙에 따라 다른 에이전트로 동적 제어 이관 | 에스컬레이션, 폴백, 전문가 라우팅 |
+| **Magentic** | 매니저 에이전트가 동적으로 작업/하위 에이전트를 계획·할당 | 동적 계획 수립, 복잡한 위임 |
+
+> 💡 Human-in-loop는 별도 패턴이라기보다, 위 패턴들에 **사람 승인/입력 노드**를 결합하여 구현하는 방식입니다.
+
+참고: [Workflow orchestrations in Agent Framework](https://learn.microsoft.com/en-us/agent-framework/workflows/orchestrations/), [Build a workflow in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/workflow)
 
 ### 워크플로우 구성 요소
 

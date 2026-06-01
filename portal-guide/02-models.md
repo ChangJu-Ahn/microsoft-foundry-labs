@@ -51,7 +51,7 @@ Foundry 포털의 Discover 섹션에서 다양한 AI 모델을 탐색할 수 있
    ![Model Leaderboard 화면](../assets/02-02-model-leaderboard.png)
 
 3. **모델 카테고리 이해**
-   - **Language Models**: GPT-5.1, GPT-5, Claude 등
+   - **Language Models**: GPT-5.1, GPT-5, Claude (Anthropic), Llama (Meta), Mistral, Cohere, Grok (xAI), DeepSeek 등 다양한 파트너 모델 포함
    - **Embedding Models**: text-embedding-3-large, text-embedding-ada-002 등
 
 ### 💡 팁
@@ -193,24 +193,27 @@ Model Router의 라우팅 전략을 설정하여 애플리케이션 요구사항
    
    ![Routing Mode 옵션](../assets/02-14-model-router-modes.png)
    
-   **a) Balanced Mode (균형 모드)**
+   **a) Balanced Mode (균형 모드, 기본값)**
    ```
-   Description: 비용, 품질, 성능의 균형을 유지
+   Description: 비용/품질의 균형 — 해당 프롬프트의 최상위 모델 대비
+                quality margin이 좁은(약 1~2%) 모델 후보 중
+                가장 저렴한 모델을 자동 선택
    Use case: 일반적인 프로덕션 워크로드
-   Behavior: 요청에 따라 적절한 모델 자동 선택
+   Behavior: 요청 복잡도에 따라 적절한 모델 자동 선택
    ```
 
    **b) Quality Mode (품질 모드)**
    ```
-   Description: 최고 품질의 응답 우선
+   Description: 최고 품질 응답 우선 (비용 고려 최소화)
    Use case: 정확도가 중요한 애플리케이션
-   Behavior: 가장 성능이 좋은 모델 우선 사용
+   Behavior: 해당 프롬프트에서 최고 품질 모델 우선 사용
    Cost: 상대적으로 높은 비용
    ```
 
    **c) Cost Mode (비용 모드)**
    ```
-   Description: 비용 최적화 우선
+   Description: 비용 최적화 우선 — 더 넓은 quality margin(약 5~6%)
+                내 후보 중 가장 저렴한 모델 선택
    Use case: 대량의 간단한 요청 처리
    Behavior: 비용 효율적인 모델 우선 사용
    Quality: 기본 품질 유지
@@ -245,9 +248,9 @@ Model Router의 라우팅 전략을 설정하여 애플리케이션 요구사항
 
 ## 📚 추가 리소스
 
-- [Model Catalog 가이드](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai)
-- [Model Router 개요](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router?view=foundry)
-- [Embedding Models 가이드](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/embeddings?view=foundry&tabs=python-new)
+- [Model Catalog 가이드](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure)
+- [Model Router 개요](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-router)
+- [Embedding Models 가이드](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/embeddings?tabs=python-new)
 
 ---
 

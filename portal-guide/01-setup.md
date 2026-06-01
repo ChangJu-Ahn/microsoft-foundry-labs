@@ -138,7 +138,7 @@ Microsoft Foundry는 AI 애플리케이션 개발을 위한 통합 플랫폼입�
 
 ## 📚 추가 리소스
 
-- [Microsoft Foundry 문서](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry?view=foundry)
+- [Microsoft Foundry 문서](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry)
 - [Azure Resource Manager 개요](https://learn.microsoft.com/azure/azure-resource-manager/management/overview)
 - [Azure 리전 및 가용성 영역](https://learn.microsoft.com/azure/reliability/availability-zones-overview)
 
