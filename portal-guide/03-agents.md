@@ -201,7 +201,7 @@ Model Router를 활용하여 지능적으로 모델을 선택하는 에이전트
    
    ![Attach files 버튼](../assets/03-14-filesearch-attach-files.png)
    
-   - `knowledge-base.json` 파일을 업로드합니다.
+   - `faq.json` 파일을 업로드합니다.
    - 파일이 정상적으로 업로드되었는지 확인합니다.
    
    ![파일 업로드 완료](../assets/03-15-filesearch-file-uploaded.png)
