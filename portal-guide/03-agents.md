@@ -214,30 +214,27 @@ Model Router를 활용하여 지능적으로 모델을 선택하는 에이전트
    **Chat 탭에서 다음 질문들을 시도해봅니다:**
 
    ```
-   사용자: 서핑하기 좋은 곳을 추천해줘
+   사용자: 대출 만기 전 해야 할 일
    ```
-   예상 답변: 양양 서피비치와 제주 중문색달해변 추천
+   예상 답변: 대출 만기에 대한 직접적인 답변은 없어도, 비슷한 답변 출력
 
    ```
-   사용자: 힐링하기 좋은 해변을 찾아줘
+   사용자: 계좌 비밀번호 초기화 방법
    ```
-   예상 답변: 강릉 경포해변과 태안 만리포해변 소개
+   예상 답변: 계좌번호 오류 관련 답변(여기는 3회 오류 발생에 대한 내용밖에 없음)
+   ```
+   사용자: 비밀번호 몇번 틀리면 오류 발생?
+   ```
+   예상 답변: 3번 발생 시 잠금
+     
+   <img width="1537" height="1283" alt="image" src="https://github.com/user-attachments/assets/f64caf36-0c96-414d-bdef-20dc9ad3c1c7" />
 
-   ```
-   사용자: 사계절 가능한 서핑 장소는?
-   ```
-   예상 답변: 제주 중문색달해변
-   
-   ![FileSearchAgent 테스트](../assets/03-16-filesearch-chat-test.png)
 
-7. **Traces 확인**
+8. **Traces 확인**
 
    - **Traces** 탭에서 File Search가 어떻게 작동했는지 확인합니다.
-   - 검색된 문서 조각(chunks)과 관련성 점수를 확인할 수 있습니다.
-   
-   ![File Search Traces 확인](../assets/03-17-filesearch-traces.png)
+     <img width="1518" height="1185" alt="image" src="https://github.com/user-attachments/assets/73f6b75d-f2ef-4a7c-83a9-11b6fe795a11" />
 
-   ![File Search Traces 확인](../assets/03-17-filesearch-traces-2.png)
 
 ### ✅ 확인 사항
 
@@ -306,7 +303,8 @@ Model Router를 활용하여 지능적으로 모델을 선택하는 에이전트
    
    ![WebSearchAgent 테스트](../assets/03-21-websearch-chat-test.png)
 
-5. **Traces 분석**
+
+6. **Traces 분석**
 
    - **Traces** 탭에서 웹 검색 과정 확인:
      - 검색 쿼리
