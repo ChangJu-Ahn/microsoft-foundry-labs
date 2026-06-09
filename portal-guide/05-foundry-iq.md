@@ -1,4 +1,4 @@
-# 04. Foundry IQ
+# 05. Foundry IQ
 
 이 모듈에서는 Microsoft Foundry IQ를 활용하여 고급 지식 기반을 구축하고 에이전트와 통합하는 방법을 학습합니다.
 
@@ -76,26 +76,15 @@ Foundry IQ를 사용하기 위해 먼저 Azure AI Search 리소스를 연결해�
 
    - Foundry 포털에서 **Foundry IQ** 섹션으로 이동합니다.
    
-   ![Foundry IQ 섹션](../assets/04-01-foundry-iq-menu.png)
+   ![alt text](image-4.png)
    
-   - **Connect to an AI Search resource to get started** 메시지가 표시됩니다.
-   
-   ![Connect to AI Search resource 메시지](../assets/04-02-foundry-iq-connect.png)
-   
+
    - **Create new resource** 버튼을 클릭합니다.
 
-2. **Search Service 설정**
+2. **AI Search 생성**
+   다음과 같이 Microsoft Foundry 내에서 직접 AI Search를 생성합니다.
 
-   Azure Portal의 검색 서비스 생성 페이지로 이동합니다:
-
-   ```
-   Resource group: foundry
-   Service name: foundry<Your unique name>
-   Location: Sweden Central
-   Pricing tier: Basic
-   ```
-   
-   ![Search Service 생성 설정](../assets/04-04-ai-search-settings.png)
+   ![alt text](image-5.png)
 
    **Pricing Tier 선택 가이드**:
    - **Free**: 테스트용, 50MB, 3 인덱스 (구독당 1개만 가능)
@@ -126,9 +115,9 @@ AI Search가 Foundry 리소스에 접근할 수 있도록 Managed Identity를 �
 1. **AI Search 리소스 설정**
 
    - Azure Portal에서 생성된 Search Service를 엽니다.
-   - 좌측 메뉴에서 **Settings > Identity**를 선택합니다.
+   - 좌측 메뉴에서 **Security + networking > Identity**를 선택합니다.
    
-   ![Managed Identity 설정](../assets/04-06-ai-search-identity.png)
+   ![alt text](image-6.png)
 
 2. **System Assigned Identity 활성화**
 
@@ -152,14 +141,7 @@ AI Search가 Foundry 리소스에 접근할 수 있도록 Managed Identity를 �
    - **Select a resource** 또는 **Connect** 버튼을 클릭합니다.
    - 드롭다운에서 생성한 Search Service를 선택합니다.
 
-   ![AI Search 연결](../assets/04-07-foundry-iq-connect.png)
-
-3. **연결 완료**
-
-   - **Connect** 버튼을 클릭합니다.
-   - 연결이 성공하면 Foundry IQ 대시보드가 활성화됩니다.
-   
-   ![AI Search 연결 완료](../assets/04-07-foundry-iq-connected.png)
+   ![alt text](image-7.png)
 
 ### ✅ 확인 사항
 
@@ -189,12 +171,11 @@ AI Search가 Foundry 리소스에 접근할 수 있도록 Managed Identity를 �
    Resource group: foundry
    Storage account name: foundry<Your unique name>
    Region: Sweden Central
-   Preferred storage type: Azure Blob Storage
-   Primary workload: Cloud native
+   Primary service: Azure Blob Storage or Azure Data Lake Storage
    Performance: Standard
    Redundancy: Locally-redundant storage (LRS)
    ```
-   ![Storage Account 생성](../assets/04-08-storage-create.png)
+   ![alt text](image-8.png)
 
    - **Review + create** > **Create**를 클릭합니다.
 
@@ -279,7 +260,9 @@ Storage Account와 AI Search 간의 권한을 설정합니다.
 
 Microsoft Foundry와 AI Search 간의 권한을 설정합니다.
 
-1. **Azure AI Project Manager 역할 할당**
+> 💡 **역할 이름 변경 안내**: `Azure AI Project Manager`는 최근 `Foundry Project Manager`로 이름이 변경되었습니다(역할 ID와 권한은 동일). 롤아웃 진행 중이라 포털에 따라 이전 이름이 보일 수 있습니다.
+
+1. **Foundry Project Manager (이전 이름: Azure AI Project Manager) 역할 할당**
 
    - **Microsoft Foundry**로 이동합니다.
 
@@ -295,15 +278,15 @@ Microsoft Foundry와 AI Search 간의 권한을 설정합니다.
 
    - **Access Control (IAM)** > **+ Add** > **Add role assignment**
 
-   - **Azure AI Project Manager**를 검색해서 선택하고 "Next" 버튼을 클릭합니다.
+   - **Foundry Project Manager**를 검색해서 선택하고 "Next" 버튼을 클릭합니다.
 
-   ![Foundry 리소스 IAM](../assets/04-14-foundry-iam.png)
+   ![alt text](image-9.png)
 
    - **Assign access to**에서 Managed identity를 선택합니다.
    - **+Select members**를 클릭하고, 사용 중인 구독, Search service, Search service name을 선택하고 "Select" 버튼을 클릭합니다.
 
    ```
-   Role: Azure AI Project Manager
+   Role: Foundry Project Manager (이전 이름: Azure AI Project Manager)
    Assign access to: Managed identity
    Members:
      - Subscription: [사용 중인 구독]
@@ -318,7 +301,6 @@ Microsoft Foundry와 AI Search 간의 권한을 설정합니다.
    ![Azure AI Project Manager 역할 할당](../assets/04-15-foundry-role-search.png)
 
    ![Azure AI Project Manager 역할 할당](../assets/04-15-foundry-role-search-2.png)
-
 
 ### **샘플 데이터 업로드**
 
@@ -344,9 +326,9 @@ Microsoft Foundry와 AI Search 간의 권한을 설정합니다.
 1. **AI Search에서 Import Wizard 시작**
 
    - Azure Portal에서 생성한 AI Search 를 엽니다.
-   - **Import data (new)** 버튼을 클릭합니다.
+   - **Import data** 버튼을 클릭합니다.
    
-   ![Import data (new) 버튼](../assets/04-16-import-data-button.png)
+   ![alt text](image-10.png)
 
 2. **데이터 소스 선택**
 
@@ -476,7 +458,7 @@ Blob Storage를 직접 연결하여 자동 인덱싱되는 Knowledge Base를 생
    Chat completions model: gpt-4.1
    ```
    
-   ![Blob Storage Knowledge Source 설정](../assets/04-29-blob-knowledge-settings.png)
+   ![alt text](image-11.png)
 
 4. **Create Knowledge Source**
 
@@ -616,6 +598,55 @@ Blob Storage를 직접 연결하여 자동 인덱싱되는 Knowledge Base를 생
 
 ---
 
+### ✅ 최소 RBAC 체크리스트 (검증됨)
+
+위 단계까지 완료하면 다음 4가지 역할 할당이 존재해야 합니다. 이것만 있으면 **포털 직접 쿼리 + 에이전트 MCP 호출 + KB의 LLM 호출 + Blob 인덱싱**이 모두 동작합니다.
+
+| # | Identity | Role | Scope (대상 리소스) | 용도 |
+|---|---|---|---|---|
+| 1 | 본인 Entra 계정 | **Search Index Data Reader** | AI Search | AI Search 포털/SDK에서 KB 직접 쿼리 |
+| 2 | 본인 Entra 계정 | **Storage Blob Data Contributor** | Storage Account | 샘플 PDF 업로드 |
+| 3 | **AI Search**의 System-assigned MI | **Storage Blob Data Contributor** | Storage Account | KB가 Blob 인덱싱·재인덱싱 |
+| 4 | **AI Search**의 System-assigned MI | **Foundry Project Manager** | Foundry 리소스 | KB가 Foundry에 등록/연동 + LLM(query planning, answer synthesis) 호출 |
+
+> 💡 **Foundry agent → MCP 호출 권한**은 Foundry 서비스의 first-party 응용프로그램(`Azure AI`)에 자동으로 부여되는 `Search Service Contributor` + `Search Index Data Reader` (AI Search scope)로 처리되므로 별도 할당이 필요 없습니다. 만약 이 권한이 없는 환경(예: 사용자 지정 MI를 사용하는 Foundry 프로젝트)이라면 아래 트러블슈팅을 참고하세요.
+
+> ⚠️ AI Search 리소스의 **Keys** 블레이드에서 **API access control**이 `Role-based access control` 또는 `Both`로 설정되어 있어야 합니다. `Key`로만 되어 있으면 RBAC 토큰이 거부됩니다 (이 워크샵 환경은 `disableLocalAuth=true`, 즉 RBAC-only입니다).
+
+### 🛠️ 오류별 IAM 추가 가이드
+
+| 증상 / 오류 메시지 | 원인 | 추가할 역할 할당 |
+|---|---|---|
+| 포털 KB 화면에서 `Try it`/쿼리 시 **403 Forbidden** | 본인 계정에 Search 데이터 평면 권한 없음 | 본인 계정 → **Search Index Data Reader** @ AI Search |
+| 에이전트 호출 시 `Access denied when connecting to the MCP server ... HTTP 403 Forbidden ... while enumerating tools` | Foundry 프로젝트의 호출 identity가 AI Search MCP 엔드포인트에 접근 불가 | Foundry 프로젝트 MI(또는 사용 중인 SP) → **Search Service Contributor** + **Search Index Data Reader** @ AI Search |
+| KB 쿼리는 되지만 답변이 비거나 `query planning failed` / `model invocation failed` | KB의 LLM(gpt-4.1 등)을 호출할 권한이 Search MI에 없음 | AI Search MI → **Cognitive Services User** @ Foundry 리소스 (이미 `Foundry Project Manager`가 있다면 보통 불필요) |
+| Blob Storage Knowledge Source 생성 시 `Cannot access storage` / 인덱싱 0 documents | Search MI가 Blob 읽기 불가 | AI Search MI → **Storage Blob Data Contributor** @ Storage Account |
+| 샘플 PDF 업로드 시 본인이 `AuthorizationFailed` | 본인 계정에 Blob 권한 없음 | 본인 계정 → **Storage Blob Data Contributor** @ Storage Account |
+| `Forbidden`이 간헐적으로 발생 (방금 권한 부여 후) | RBAC 전파 지연 | 1–3분 대기 후 재시도. 캐시된 토큰 갱신 위해 포털 새로고침/로그아웃 |
+| `Public network access is disabled` 또는 timeout | AI Search/Foundry의 Networking이 Disabled 또는 IP 제한 | Networking → **Public access: All networks** (테스트) 또는 trusted services 예외 허용 |
+
+### 🔍 권한 빠른 진단 (Azure CLI)
+
+문제 발생 시 다음 명령으로 현재 할당된 역할을 확인할 수 있습니다.
+
+```bash
+# 변수 설정
+SEARCH_ID=$(az search service show -g <RG> -n <SEARCH_NAME> --query id -o tsv)
+FOUNDRY_ID=$(az cognitiveservices account show -g <RG> -n <FOUNDRY_NAME> --query id -o tsv)
+SEARCH_MI=$(az search service show --ids "$SEARCH_ID" --query identity.principalId -o tsv)
+
+# AI Search 리소스의 모든 RBAC
+az role assignment list --scope "$SEARCH_ID" --include-inherited -o table
+
+# Foundry 리소스의 모든 RBAC
+az role assignment list --scope "$FOUNDRY_ID" --include-inherited -o table
+
+# Search MI가 가진 모든 역할
+az role assignment list --assignee "$SEARCH_MI" --all -o table
+```
+
+---
+
 ## 📚 추가 리소스
 
 - [Foundry IQ 개요](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/what-is-foundry-iq)
@@ -629,10 +660,10 @@ Blob Storage를 직접 연결하여 자동 인덱싱되는 Knowledge Base를 생
 
 ## 다음 단계
 
-Knowledge Base 구축이 완료되었습니다! 이제 여러 에이전트를 조합하여 복잡한 워크플로우를 만들어봅시다:
+Knowledge Base 구축이 완료되었습니다! 이제 에이전트와 워크플로우의 성능을 평가하는 방법을 학습합니다:
 
-➡️ **[05. 워크플로우](./05-workflows.md)**: Sequential, Group Chat, Human-in-loop 워크플로우를 구축합니다.
+➡️ **[06. 평가](./06-evaluations.md)**: 에이전트 및 워크플로우의 품질을 체계적으로 평가합니다.
 
 ---
 
-[← 이전: 에이전트 개발](./03-agents.md) | [메인으로](./README.md) | [다음: 워크플로우 →](./05-workflows.md)
+[← 이전: 워크플로우](./04-workflows.md) | [메인으로](./README.md) | [다음: 평가 →](./06-evaluations.md)

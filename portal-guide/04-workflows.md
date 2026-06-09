@@ -1,4 +1,4 @@
-# 05. 워크플로우
+# 04. 워크플로우
 
 이 모듈에서는 여러 에이전트를 조합하여 복잡한 작업을 수행하는 워크플로우를 구축하는 방법을 학습합니다.
 
@@ -170,9 +170,10 @@ Instructions:
 1. **Workflows 섹션 이동**
 
    - Foundry 포털 우측 상단 메뉴에서 **Build**를 선택합니다.
-   - **Workflows** 메뉴를 클릭합니다.
+   - **Agent** 메뉴를 클릭합니다.
+   - 메뉴바에서 **Workflows**를 클릭합니다.
    
-   ![Build > Workflows 메뉴](../assets/05-01-workflows-menu.png)
+   ![alt text](image-3.png)
 
 2. **새 워크플로우 생성**
 
@@ -268,7 +269,11 @@ Instructions:
    # Before running: pip install --pre azure-ai-projects>=2.0.0b1
    from azure.identity import DefaultAzureCredential
    from azure.ai.projects import AIProjectClient
-   from azure.ai.projects.models import ResponseStreamEventType
+
+   RESPONSE_OUTPUT_TEXT_DONE = "response.output_text.done"
+   RESPONSE_OUTPUT_ITEM_ADDED = "response.output_item.added"
+   RESPONSE_OUTPUT_ITEM_DONE = "response.output_item.done"
+   RESPONSE_OUTPUT_TEXT_DELTA = "response.output_text.delta"
    
    # Project configuration
    PROJECT_ENDPOINT = "https://<foundry-resource-name>.services.ai.azure.com/api/projects/proj-default"
@@ -298,7 +303,7 @@ Instructions:
        print(f"\nCalling workflow: {WORKFLOW_NAME}...\n")
        stream = openai_client.responses.create(
            conversation=conversation.id,
-           extra_body={"agent": {"name": workflow["name"], "type": "agent_reference"}},
+            extra_body={"agent_reference": {"name": workflow["name"], "version": workflow["version"], "type": "agent_reference"}},
            input="제주도 2박 3일 여행 일정 짜줘",
            stream=True,
            metadata={"x-ms-debug-mode-enabled": "1"},
@@ -306,16 +311,16 @@ Instructions:
    
        # Process streaming events
        for event in stream:
-           if event.type == ResponseStreamEventType.RESPONSE_OUTPUT_TEXT_DONE:
+            if event.type == RESPONSE_OUTPUT_TEXT_DONE:
                print("\t", event.text)
-           elif event.type == ResponseStreamEventType.RESPONSE_OUTPUT_ITEM_ADDED and event.item.type == "workflow_action":
+            elif event.type == RESPONSE_OUTPUT_ITEM_ADDED and event.item.type == "workflow_action":
                print(f"\n{'='*60}")
                print(f"Actor - '{event.item.action_id}':")
                print(f"{'='*60}")
-           elif event.type == ResponseStreamEventType.RESPONSE_OUTPUT_ITEM_DONE and event.item.type == "workflow_action":
+            elif event.type == RESPONSE_OUTPUT_ITEM_DONE and event.item.type == "workflow_action":
                print(f"\n✓ Workflow Item '{event.item.action_id}' is '{event.item.status}'")
                print(f"  (previous item was: '{event.item.previous_action_id}')")
-           elif event.type == ResponseStreamEventType.RESPONSE_OUTPUT_TEXT_DELTA:
+            elif event.type == RESPONSE_OUTPUT_TEXT_DELTA:
                print(event.delta, end="", flush=True)
    
        # Clean up
@@ -327,8 +332,8 @@ Instructions:
 3. **실행**
 
    ```bash
-   pip install --pre azure-ai-projects>=2.0.0b1
-   python invokeWorkflow.py
+   python3 -m pip install --pre "azure-ai-projects>=2.0.0b1"
+   python3 invokeWorkflow.py
    ```
 
 ### ✅ 확인 사항
@@ -608,10 +613,10 @@ Human-in-loop는 다음 상황에서 유용합니다:
 
 ## 다음 단계
 
-복잡한 워크플로우를 구축했습니다! 이제 에이전트와 워크플로우의 성능을 평가하는 방법을 학습합니다:
+복잡한 워크플로우를 구축했습니다! 이제 Foundry IQ를 사용하여 고급 지식 기반을 구축해봅시다:
 
-➡️ **[06. 평가](./06-evaluations.md)**: 에이전트 및 워크플로우의 품질을 체계적으로 평가합니다.
+➡️ **[05. Foundry IQ](./05-foundry-iq.md)**: AI Search와 Blob Storage를 활용한 지식 기반 구축을 학습합니다.
 
 ---
 
-[← 이전: Foundry IQ](./04-foundry-iq.md) | [메인으로](./README.md) | [다음: 평가 →](./06-evaluations.md)
+[← 이전: 에이전트 개발](./03-agents.md) | [메인으로](./README.md) | [다음: Foundry IQ →](./05-foundry-iq.md)

@@ -298,6 +298,8 @@ Foundry는 6개 카테고리, 32개의 Evaluator를 제공합니다.
 - [파운드리 포털에서 평가 실행](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/evaluate-generative-ai-app?view=foundry)
 - [에이전트 평가](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators?view=foundry)
 
+- [에이전트 평가 실습 레포](https://github.com/ChangJu-Ahn/Foundry-EvaluationSDK-Tutorial)
+
 ---
 
 ## 다음 단계
@@ -308,4 +310,4 @@ Foundry는 6개 카테고리, 32개의 Evaluator를 제공합니다.
 
 ---
 
-[← 이전: 워크플로우](./05-workflows.md) | [메인으로](./README.md) | [다음: Control Plane →](./07-control-plane.md)
+[← 이전: Foundry IQ](./05-foundry-iq.md) | [메인으로](./README.md) | [다음: Control Plane →](./07-control-plane.md)

@@ -1,4 +1,4 @@
-# 07. Control Plane
+# 07. Control Plane [점검 중]
 
 이 모듈에서는 Microsoft Foundry의 Control Plane을 통해 프로덕션 환경의 AI 리소스를 관리하고 모니터링하는 방법을 학습합니다.
 
@@ -684,11 +684,11 @@ Development → Test → Staging → Production
 ✅ Module 03: 에이전트 개발
    - 다양한 타입의 에이전트 생성 및 배포
 
-✅ Module 04: Foundry IQ
-   - AI Search 및 Blob Storage 기반 Knowledge Base 구축
-
-✅ Module 05: 워크플로우
+✅ Module 04: 워크플로우
    - Sequential, Group Chat, Human-in-loop 워크플로우 구현
+
+✅ Module 05: Foundry IQ
+   - AI Search 및 Blob Storage 기반 Knowledge Base 구축
 
 ✅ Module 06: 평가
    - 에이전트 품질 평가 및 개선

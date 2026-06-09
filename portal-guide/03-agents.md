@@ -432,12 +432,8 @@ Foundry 포털에서 엔드포인트 정보를 확인하는 방법:
 
 1. Build > Agents에서 게시된 에이전트 선택
 2. **Publish** 버튼 클릭 후, **View details**을 클릭
-3. 다음 정보 복사:
-   - Agent application
-   - Activity Protocol endpoint
-   - Response API endpoint
 
-![Endpoint 정보 확인](../assets/03-26-agent-endpoint.png)
+![alt text](image.png)
 
 #### 4. 실행
 
@@ -453,6 +449,8 @@ pip install --pre azure-ai-projects
 # 스크립트 실행
 python invokeAgent.py
 ```
+
+![alt text](image-2.png)
 
 ### 🔐 인증 옵션
 
@@ -499,10 +497,10 @@ credential = ClientSecretCredential(
 
 ## 다음 단계
 
-다양한 에이전트를 만들어보았습니다! 이제 Foundry IQ를 사용하여 고급 지식 기반을 구축해봅시다:
+다양한 에이전트를 만들어보았습니다! 이제 여러 에이전트를 조합한 워크플로우를 구축해봅시다:
 
-➡️ **[04. Foundry IQ](./04-foundry-iq.md)**: AI Search와 Blob Storage를 활용한 지식 기반 구축을 학습합니다.
+➡️ **[04. 워크플로우](./04-workflows.md)**: Sequential, Group Chat, Human-in-loop 워크플로우를 구축합니다.
 
 ---
 
-[← 이전: 모델 및 배포](./02-models.md) | [메인으로](./README.md) | [다음: Foundry IQ →](./04-foundry-iq.md)
+[← 이전: 모델 및 배포](./02-models.md) | [메인으로](./README.md) | [다음: 워크플로우 →](./04-workflows.md)
