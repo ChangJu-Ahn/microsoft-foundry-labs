@@ -1,36 +1,26 @@
 # Microsoft Foundry Agent Invocation using Responses API protocol
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+# Before running the sample:
+#    pip install azure-ai-projects>=2.1.0
 
-# TODO: Update these values with your actual Microsoft Foundry details
-# Get these from: https://ai.azure.com → Your Project → Deployments
-FOUNDRY_ENDPOINT = "https://foundry-junwoo.services.ai.azure.com/api/projects/proj-default"
-AGENT_NAME = "ModelRouterAgent"
-API_VERSION = "2025-11-15-preview"
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
 
-# Create OpenAI client with Azure authentication
-client = OpenAI(
-    api_key=get_bearer_token_provider(
-        DefaultAzureCredential(), 
-        "https://ai.azure.com/.default"
-    ),
-    base_url=f"{FOUNDRY_ENDPOINT}/applications/{AGENT_NAME}/protocols/openai",
-    default_query={"api-version": API_VERSION}
+endpoint = "https://foundry-changju-v3.services.ai.azure.com/api/projects/proj-default"
+
+project_client = AIProjectClient(
+    endpoint=endpoint,
+    credential=DefaultAzureCredential(),
 )
 
-try:
-    # Call the agent using responses API
-    response = client.responses.create(
-        input="제주도 2박 3일 여행 코스 추천해줘"
-    )
-    
-    print(f"Response: {response.output_text}")
-    
-except Exception as e:
-    print(f"Error: {e}")
-    print("\n🔍 Troubleshooting:")
-    print("1. Check your endpoint URL at https://ai.azure.com")
-    print("2. Verify the project name and agent name exist")
-    print("3. Ensure you're logged in: az login")
-    print("4. Confirm the agent is deployed and running")
+my_agent = "FileSearchAgent"
+my_version = "4"
 
+openai_client = project_client.get_openai_client()
+
+# Reference the agent to get a response
+response = openai_client.responses.create(
+    input=[{"role": "user", "content": "Tell me what you can help with."}],
+    extra_body={"agent_reference": {"name": my_agent, "version": my_version, "type": "agent_reference"}},
+)
+
+print(f"Response output: {response.output_text}")
